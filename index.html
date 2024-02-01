@@ -84,7 +84,10 @@
                   <div class="contact-img p-2">
                     <img :src="contact.avatar" :alt="contact.name" />
                   </div>
-                  <h6 class="contact-info">{{ contact.name }}</h6>
+                  <div class="contact-info">
+                    <h6 class="contact-name">{{ contact.name }}</h6>
+                    <p class="msg-shown py-1">Ultimo messaggio inviato</p>
+                  </div>
                   <div class="contact-time p-2">12:00</div>
                 </li>
               </ul>
@@ -92,9 +95,39 @@
           </div>
           <div class="col-8 right-col p-0">
             <div class="col-header d-flex justify-content-between p-2">
-              <div class="header-contact p-2">jhbj</div>
-              <div class="header-icons p-2">kjbkjb</div>
+              <div class="header-contact p-2 d-flex">
+                <img :src="contacts[currentContact].avatar" :alt="contacts[currentContact].name" />
+
+                <div class="contact-info ms-2">
+                  <h6 class="contact-name">{{ contacts[currentContact].name }}</h6>
+                  <p class="msg-shown">Ultimo accesso oggi alle 12:00</p>
+                </div>
+
+              </div>
+              <div class="header-icons p-2">
+                <i class="fa-solid fa-magnifying-glass me-3"></i>
+                <i class="fa-solid fa-paperclip me-3"></i>
+                <i class="fa-solid fa-ellipsis-vertical"></i>
+              </div>
             </div>
+
+            <div class="chat-container">
+              <div class="messages"></div>
+            </div>
+
+            <div class="chat-input d-flex align-items-center px-2">
+              <div class="mx-4">
+                <i class="fa-regular fa-face-smile"></i>
+              </div>
+
+              <input type="text" class="flex-grow-1 border rounded" placeholder="Scrivi un messaggio...">
+
+              <div class="mx-4">
+                <i class="fa-solid fa-microphone"></i>
+              </div>
+
+            </div>
+
           </div>
         </div>
       </div>

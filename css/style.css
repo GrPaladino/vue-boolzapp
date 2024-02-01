@@ -23,13 +23,17 @@ ul {
 
 img {
   width: 100%;
-  border-radius: 30px;
-  width: 50px;
+  border-radius: 50%;
+  width: 35px;
 }
 
 i {
   cursor: pointer;
   color: gray;
+}
+
+h6 {
+  margin: 0;
 }
 
 .container {
@@ -62,8 +66,8 @@ i {
 }
 
 .notification-toggle .bell {
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   background-color: var(--received-message-bg);
   display: flex;
@@ -87,10 +91,6 @@ i {
   justify-content: center;
 }
 
-.notification-toggle h6 {
-  margin: 0;
-}
-
 .input-area {
   background-color: var(--left-input-bg);
 }
@@ -101,7 +101,7 @@ i {
   border: none;
 }
 .contacts {
-  height: 600px;
+  height: 554px;
   background-color: var(--left-contacts-bg);
   overflow: scroll;
 }
@@ -119,9 +119,25 @@ i {
 
 .contact-info {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.contact-time {
+.contact-time,
+.msg-shown {
   font-size: 0.6rem;
-  color: lightgrey;
+  color: rgb(183, 179, 179);
+  margin: 0;
+}
+
+.chat-container {
+  height: 628px;
+  background-image: url(../img/mine.jpg);
+  overflow: scroll;
+}
+
+.chat-input {
+  height: 40px;
+  background-color: var(--header-column-bg);
 }
