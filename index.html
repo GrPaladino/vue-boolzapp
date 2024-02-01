@@ -80,7 +80,7 @@
 
             <div class="contacts">
               <ul class="p-0">
-                <li v-for="contact in contacts" class="contact">
+                <li v-for="(contact, index) in contacts" @click="goToContact(index)" class="contact">
                   <div class="contact-img p-2">
                     <img :src="contact.avatar" :alt="contact.name" />
                   </div>
@@ -111,8 +111,14 @@
               </div>
             </div>
 
-            <div class="chat-container">
-              <div class="messages"></div>
+            <div class="chat-container p-5">
+              <div v-for="object in contacts[currentContact].messages" :class="object.status === 'sent' ? 'sent' : 'received'" class="messages my-3 d-flex justify-content-between">
+                <div class="sent-msg">
+                  {{object.message}}
+                </div>
+
+                <div class="msg-time">{{object.date}}</div>
+              </div>
             </div>
 
             <div class="chat-input d-flex align-items-center px-2">

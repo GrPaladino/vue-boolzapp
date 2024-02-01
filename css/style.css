@@ -135,9 +135,45 @@ h6 {
   height: 628px;
   background-image: url(../img/mine.jpg);
   overflow: scroll;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-container .messages {
+  padding: 0px 15px;
+}
+
+.chat-container .messages .sent-msg {
+  padding: 5px;
+}
+
+.chat-container .msg-time {
+  font-size: 0.5rem;
+  align-self: flex-end;
 }
 
 .chat-input {
   height: 40px;
   background-color: var(--header-column-bg);
+  align-self: baseline;
+}
+
+.sent {
+  min-width: 350px;
+  border-radius: 10px;
+  text-align: start;
+  align-self: flex-end;
+  font-size: 0.8rem;
+  background-color: var(--sent-message-bg);
+  padding: 10px;
+}
+
+.received {
+  min-width: 350px;
+  border-radius: 10px;
+  text-align: start;
+  align-self: flex-start;
+  font-size: 0.8rem;
+  background-color: var(--received-message-bg);
+  padding: 10px;
 }

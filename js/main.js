@@ -195,6 +195,14 @@ const app = createApp({
     };
   },
 
-  methods: {},
+  methods: {
+    goToContact(i) {
+      this.currentContact = i;
+    },
+
+    messagesArray() {
+      this.currentMessageArray = this.contacts[this.currentContact].messages;
+    },
+  },
 });
 app.mount("#root");
