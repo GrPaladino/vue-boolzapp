@@ -213,20 +213,23 @@ const app = createApp({
     },
 
     sendNewMessage() {
-      this.contacts[this.currentContact].messages.push({
-        ...this.newMsg,
-      });
-
-      this.newMsg.message = "";
+      if (this.newMsg.message.length < 1) {
+        return;
+      } else {
+        this.contacts[this.currentContact].messages.push({
+          ...this.newMsg,
+        });
+        this.newMsg.message = "";
+        this.sendOkMsg();
+      }
     },
 
     sendOkMsg() {
-      setTimeout();
-      // ## SETTARE IL TIMEOUT
-
-      this.contacts[this.currentContact].messages.push({
-        ...this.newOk,
-      });
+      setTimeout(() => {
+        this.contacts[this.currentContact].messages.push({
+          ...this.newOk,
+        });
+      }, 1000);
     },
   },
 });
