@@ -1,0 +1,16 @@
+:root {
+  /* Palette colori */
+  --header-column-bg: #eaeaea;
+  --active-notification-bg: #8edafc;
+  --left-input-bg: #fafafa;
+  --left-contacts-bg: #ffffff;
+  --sent-message-bg: #d5f9ba;
+  --received-message-bg: #ffffff;
+  --right-bottom-input-bg: #f3eeea;
+  --icon-color: #b1b1b1;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(to bottom, #009688 15%, #dadbd3 15% 100%);
+}
