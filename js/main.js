@@ -192,6 +192,18 @@ const app = createApp({
           ],
         },
       ],
+
+      newMsg: {
+        date: "10/01/2020 15:54:00",
+        message: "",
+        status: "sent",
+      },
+
+      newOk: {
+        date: "10/01/2020 15:54:00",
+        message: "Ok",
+        status: "received",
+      },
     };
   },
 
@@ -200,8 +212,21 @@ const app = createApp({
       this.currentContact = i;
     },
 
-    messagesArray() {
-      this.currentMessageArray = this.contacts[this.currentContact].messages;
+    sendNewMessage() {
+      this.contacts[this.currentContact].messages.push({
+        ...this.newMsg,
+      });
+
+      this.newMsg.message = "";
+    },
+
+    sendOkMsg() {
+      setTimeout();
+      // ## SETTARE IL TIMEOUT
+
+      this.contacts[this.currentContact].messages.push({
+        ...this.newOk,
+      });
     },
   },
 });
