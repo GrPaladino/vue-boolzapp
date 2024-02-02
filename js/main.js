@@ -4,7 +4,7 @@ const app = createApp({
   data() {
     return {
       currentContact: 0,
-
+      searchContact: "",
       contacts: [
         {
           name: "Michele",
@@ -194,13 +194,13 @@ const app = createApp({
       ],
 
       newMsg: {
-        date: "10/01/2020 15:54:00",
+        date: this.getRealTime(),
         message: "",
         status: "sent",
       },
 
       newOk: {
-        date: "10/01/2020 15:54:00",
+        date: this.getRealTime(),
         message: "Ok",
         status: "received",
       },
@@ -210,6 +210,20 @@ const app = createApp({
   methods: {
     goToContact(i) {
       this.currentContact = i;
+    },
+
+    getLastMessage(messages) {
+      const lastMessage = messages.at(-1);
+      return lastMessage ? lastMessage.message : "";
+    },
+
+    getLastAccess(messages) {
+      const sentMessages = messages.filter(
+        (message) => message.status == "received"
+      );
+      const lastMessage = sentMessages.at(-1);
+
+      return lastMessage ? lastMessage.date : "";
     },
 
     sendNewMessage() {
@@ -231,6 +245,13 @@ const app = createApp({
         });
       }, 1000);
     },
+
+    getRealTime() {
+      const now = new Date();
+      return `${now.getDay()}/${now.getMonth()}/${now.getFullYear()} ${now.getHours()}:${now.getMinutes()}`;
+    },
+    // #### IMPOSTARE RICERCA CONTATTI
+    // searchContact() {},
   },
 });
 app.mount("#root");

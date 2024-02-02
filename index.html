@@ -71,6 +71,7 @@
                 <i class="fa-solid fa-magnifying-glass p-2"></i>
               </label>
               <input
+                v-model="searchContact"
                 id="left-input"
                 class="left-input"
                 type="text"
@@ -86,9 +87,9 @@
                   </div>
                   <div class="contact-info">
                     <h6 class="contact-name">{{ contact.name }}</h6>
-                    <p class="msg-shown py-1">Ultimo messaggio inviato</p>
+                    <p class="msg-shown py-1">{{ getLastMessage(contact.messages) }}</p>
                   </div>
-                  <div class="contact-time p-2">12:00</div>
+                  <div class="contact-time p-2">{{ getLastAccess(contact.messages) }}</div>
                 </li>
               </ul>
             </div>
@@ -100,7 +101,7 @@
 
                 <div class="contact-info ms-2">
                   <h6 class="contact-name">{{ contacts[currentContact].name }}</h6>
-                  <p class="msg-shown">Ultimo accesso oggi alle 12:00</p>
+                  <p class="msg-shown">{{ getLastAccess(contacts[currentContact].messages) }}</p>
                 </div>
 
               </div>
