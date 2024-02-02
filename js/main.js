@@ -5,6 +5,8 @@ const app = createApp({
     return {
       currentContact: 0,
       searchContact: "",
+      display: "d-none",
+
       contacts: [
         {
           name: "Michele",
@@ -250,8 +252,20 @@ const app = createApp({
       const now = new Date();
       return `${now.getDay()}/${now.getMonth()}/${now.getFullYear()} ${now.getHours()}:${now.getMinutes()}`;
     },
-    // #### IMPOSTARE RICERCA CONTATTI
-    // searchContact() {},
+
+    showDropdown() {
+      return (this.display = "d-block");
+    },
+
+    hideDropdown() {
+      return (this.display = "d-none");
+    },
+
+    isVisible(contact) {
+      return contact.name
+        .toLowerCase()
+        .includes(this.searchContact.toLowerCase());
+    },
   },
 });
 app.mount("#root");

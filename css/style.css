@@ -149,15 +149,17 @@ h6 {
   word-break: break-all;
 }
 
+.chat-container .messages .rigth-messages {
+  text-align: end;
+}
+
+.messages:hover button {
+  display: block;
+}
+
 .chat-container .msg-time {
   font-size: 0.5rem;
   align-self: flex-end;
-}
-
-.chat-input {
-  height: 40px;
-  background-color: var(--header-column-bg);
-  align-self: baseline;
 }
 
 .sent {
@@ -178,4 +180,15 @@ h6 {
   font-size: 0.8rem;
   background-color: var(--received-message-bg);
   padding: 10px;
+}
+
+.chat-input {
+  height: 40px;
+  background-color: var(--header-column-bg);
+  align-self: baseline;
+}
+
+.chat-input .message-box {
+  overflow: scroll;
+  padding: 3px;
 }

@@ -81,7 +81,8 @@
 
             <div class="contacts">
               <ul class="p-0">
-                <li v-for="(contact, index) in contacts" @click="goToContact(index)" class="contact">
+                <li v-for="(contact, index) in contacts" v-show="isVisible(contact)" @click="goToContact(index)" class="contact">
+                  
                   <div class="contact-img p-2">
                     <img :src="contact.avatar" :alt="contact.name" />
                   </div>
@@ -113,12 +114,24 @@
             </div>
 
             <div class="chat-container p-5">
-              <div v-for="object in contacts[currentContact].messages" :class="object.status === 'sent' ? 'sent' : 'received'" class="messages my-3 d-flex justify-content-between">
+              <div v-for="(object, index) in contacts[currentContact].messages" :class="object.status === 'sent' ? 'sent' : 'received'" @mouseover="showDropdown()" @mouseleave="hideDropdown()" class="messages my-3 d-flex justify-content-between">
                 <div class="sent-msg">
                   {{object.message}}
                 </div>
+                <div  class="rigth-messages">
+                  <div  class="btn-group">
+                    <button :class="display" type="button" class="btn" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fa-solid fa-angle-down"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                      <li><a class="dropdown-item" href="#">Menu item</a></li>
+                      <li><a class="dropdown-item" href="#">Menu item</a></li>
+                      <li><a class="dropdown-item" href="#">Menu item</a></li>
+                    </ul>
+                  </div>
+                  <div class="msg-time">{{object.date}}</div>
+                </div>
 
-                <div class="msg-time">{{object.date}}</div>
               </div>
             </div>
 
@@ -127,7 +140,7 @@
                 <i class="fa-regular fa-face-smile"></i>
               </div>
 
-              <input v-model="newMsg.message" @keyUp.enter="sendNewMessage()" type="text" class="flex-grow-1 border rounded" placeholder="Scrivi un messaggio...">
+              <input v-model="newMsg.message" @keyUp.enter="sendNewMessage()" type="text" class="message-box flex-grow-1 border rounded" placeholder="Scrivi un messaggio...">
 
               <div class="mx-4">
                 <i class="fa-solid fa-microphone"></i>
