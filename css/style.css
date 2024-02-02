@@ -146,20 +146,33 @@ h6 {
 .chat-container .messages .sent-msg {
   padding: 5px;
   max-width: 400px;
+  min-height: 50px;
   word-break: break-all;
 }
 
 .chat-container .messages .rigth-messages {
   text-align: end;
+  position: relative;
+}
+
+.messages button {
+  display: none;
 }
 
 .messages:hover button {
   display: block;
 }
 
+.messages .dropdown-menu li {
+  background-color: white;
+}
+
 .chat-container .msg-time {
   font-size: 0.5rem;
   align-self: flex-end;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
 }
 
 .sent {

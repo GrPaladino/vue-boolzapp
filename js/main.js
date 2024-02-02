@@ -5,7 +5,6 @@ const app = createApp({
     return {
       currentContact: 0,
       searchContact: "",
-      display: "d-none",
 
       contacts: [
         {
@@ -209,6 +208,12 @@ const app = createApp({
     };
   },
 
+  computed: {
+    activeContact() {
+      return this.contacts[this.currentContact];
+    },
+  },
+
   methods: {
     goToContact(i) {
       this.currentContact = i;
@@ -232,7 +237,7 @@ const app = createApp({
       if (this.newMsg.message.length < 1) {
         return;
       } else {
-        this.contacts[this.currentContact].messages.push({
+        this.activeContact.messages.push({
           ...this.newMsg,
         });
         this.newMsg.message = "";
@@ -242,7 +247,7 @@ const app = createApp({
 
     sendOkMsg() {
       setTimeout(() => {
-        this.contacts[this.currentContact].messages.push({
+        this.activeContact.messages.push({
           ...this.newOk,
         });
       }, 1000);
@@ -253,18 +258,14 @@ const app = createApp({
       return `${now.getDay()}/${now.getMonth()}/${now.getFullYear()} ${now.getHours()}:${now.getMinutes()}`;
     },
 
-    showDropdown() {
-      return (this.display = "d-block");
-    },
-
-    hideDropdown() {
-      return (this.display = "d-none");
-    },
-
     isVisible(contact) {
       return contact.name
         .toLowerCase()
         .includes(this.searchContact.toLowerCase());
+    },
+
+    removeMessage(i) {
+      this.activeContact.messages.splice(i, 1);
     },
   },
 });

@@ -98,11 +98,11 @@
           <div class="col-8 right-col p-0">
             <div class="col-header d-flex justify-content-between p-2">
               <div class="header-contact p-2 d-flex">
-                <img :src="contacts[currentContact].avatar" :alt="contacts[currentContact].name" />
+                <img :src="activeContact.avatar" :alt="activeContact.name" />
 
                 <div class="contact-info ms-2">
-                  <h6 class="contact-name">{{ contacts[currentContact].name }}</h6>
-                  <p class="msg-shown">{{ getLastAccess(contacts[currentContact].messages) }}</p>
+                  <h6 class="contact-name">{{ activeContact.name }}</h6>
+                  <p class="msg-shown">{{ getLastAccess(activeContact.messages) }}</p>
                 </div>
 
               </div>
@@ -114,19 +114,18 @@
             </div>
 
             <div class="chat-container p-5">
-              <div v-for="(object, index) in contacts[currentContact].messages" :class="object.status === 'sent' ? 'sent' : 'received'" @mouseover="showDropdown()" @mouseleave="hideDropdown()" class="messages my-3 d-flex justify-content-between">
+              <div v-for="(object, index) in activeContact.messages" :class="object.status === 'sent' ? 'sent' : 'received'" @mouseover="showDropdown(object, index)" @mouseleave="hideDropdown(object, index)" class="messages my-3 d-flex justify-content-between">
                 <div class="sent-msg">
                   {{object.message}}
                 </div>
                 <div  class="rigth-messages">
                   <div  class="btn-group">
-                    <button :class="display" type="button" class="btn" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button type="button" class="btn" data-bs-toggle="dropdown" aria-expanded="false">
                       <i class="fa-solid fa-angle-down"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
-                      <li><a class="dropdown-item" href="#">Menu item</a></li>
-                      <li><a class="dropdown-item" href="#">Menu item</a></li>
-                      <li><a class="dropdown-item" href="#">Menu item</a></li>
+                      <li><a class="dropdown-item" href="#">Message info</a></li>
+                      <li><a @click="removeMessage(index)" class="dropdown-item" href="#">Delete message</a></li>
                     </ul>
                   </div>
                   <div class="msg-time">{{object.date}}</div>
