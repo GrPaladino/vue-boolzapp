@@ -255,7 +255,19 @@ const app = createApp({
 
     getRealTime() {
       const now = new Date();
-      return `${now.getDay()}/${now.getMonth()}/${now.getFullYear()} ${now.getHours()}:${now.getMinutes()}`;
+
+      const day = now.getDate() < 10 ? "0" + now.getDate() : now.getDate();
+      const month =
+        now.getMonth() + 1 < 10
+          ? "0" + (now.getMonth() + 1)
+          : now.getMonth() + 1;
+      const year =
+        now.getFullYear() < 10 ? "0" + now.getFullYear() : now.getFullYear();
+      const hour = now.getHours() < 10 ? "0" + now.getHours() : now.getHours();
+      const minutes =
+        now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes();
+
+      return `${day}/${month}/${year} ${hour}:${minutes}`;
     },
 
     isVisible(contact) {

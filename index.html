@@ -66,6 +66,8 @@
               </div>
             </div>
 
+
+            <!-- ## BARRA RICERCA CONTATTI -->
             <div class="input-area p-2">
               <label for="left-input">
                 <i class="fa-solid fa-magnifying-glass p-2"></i>
@@ -78,7 +80,7 @@
                 placeholder="Cerca o inizia una nuova chat..."
               />
             </div>
-
+            <!-- ## LISTA CONTATTI -->
             <div class="contacts">
               <ul class="p-0">
                 <li v-for="(contact, index) in contacts" v-show="isVisible(contact)" @click="goToContact(index)" class="contact">
@@ -95,6 +97,8 @@
               </ul>
             </div>
           </div>
+
+          
           <div class="col-8 right-col p-0">
             <div class="col-header d-flex justify-content-between p-2">
               <div class="header-contact p-2 d-flex">
@@ -113,8 +117,9 @@
               </div>
             </div>
 
+            <!-- ## CONTENITORE CHAT -->
             <div class="chat-container p-5">
-              <div v-for="(object, index) in activeContact.messages" :class="object.status === 'sent' ? 'sent' : 'received'" @mouseover="showDropdown(object, index)" @mouseleave="hideDropdown(object, index)" class="messages my-3 d-flex justify-content-between">
+              <div v-for="(object, index) in activeContact.messages" :class="object.status === 'sent' ? 'sent' : 'received'" class="messages my-3 d-flex justify-content-between">
                 <div class="sent-msg">
                   {{object.message}}
                 </div>
@@ -134,6 +139,7 @@
               </div>
             </div>
 
+            <!-- ## CHAT INPUT TEXT -->
             <div class="chat-input d-flex align-items-center px-2">
               <div class="mx-4">
                 <i class="fa-regular fa-face-smile"></i>
