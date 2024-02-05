@@ -7,6 +7,7 @@ const app = createApp({
     return {
       currentContact: 0,
       searchContact: "",
+      classNone: "",
 
       contacts: [
         {
@@ -331,6 +332,10 @@ const app = createApp({
         ];
 
       return reply;
+    },
+
+    removePopup() {
+      this.classNone = "d-none";
     },
   },
 

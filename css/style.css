@@ -40,6 +40,7 @@ h6 {
   width: 1200px;
   height: 750px;
   margin-top: 2rem;
+  position: relative;
 }
 
 .left-col {
@@ -203,4 +204,31 @@ h6 {
 
 .chat-input .message-box {
   padding: 3px;
+}
+
+.welcome {
+  width: 1200px;
+  height: 750px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(50, 51, 50, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup {
+  width: 400px;
+  height: 400px;
+  border-radius: 10px;
+  background-color: rgb(171, 200, 213);
+}
+
+.popup .user {
+  cursor: pointer;
+}
+
+.user:hover {
+  background-color: rgb(121, 126, 128);
 }

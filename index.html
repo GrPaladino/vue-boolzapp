@@ -156,6 +156,26 @@
 
             </div>
 
+
+            
+          </div>
+        </div>
+        <!-- ## WELCOME POPUP -->
+        <div :class="classNone" class="welcome">
+          <div class="popup">
+            <h3 class="p-2 mb-4 text-center">Con chi vuoi chattare?</h3>
+            <div class="utenti">
+              <ul class="p-0">
+                <li v-for="(contact, index) in contacts"  @click="goToContact(index), removePopup()" class="contact d">
+                  <div class="user d-flex mb-1">
+                     <img :src="contact.avatar" :alt="contact.name" />
+                    <h6 class="contact-name ps-3">{{ contact.name }}</h6>
+                  </div>
+                </li>
+              </ul>
+
+
+            </div>
           </div>
         </div>
       </div>
