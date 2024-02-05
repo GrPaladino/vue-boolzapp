@@ -45,140 +45,150 @@
 
   <body id="body">
     <div id="root">
-      <div class="container">
-        <div class="row d-flex">
-          <div class="col-4 left-col p-0 d-flex">
-            <div class="col-header p-2 border-end border-dark-subtle">
-              <div class="header-contact p-2 d-flex align-items-center">
-                <img src="./img/avatar_io.jpg" alt="mineAvatar" />
-                <h6 class="ms-3">Sofia</h6>
-              </div>
-              <div class="header-icons p-2">
-                <i class="fa-solid fa-circle-notch me-3"></i>
-                <i class="fa-solid fa-message me-3"></i>
-                <i class="fa-solid fa-ellipsis-vertical"></i>
-              </div>
-            </div>
-            <div class="notification-toggle p-2">
-              <div class="bell">
-                <i class="fa-solid fa-bell-slash"></i>
-              </div>
-              <div class="info p-2">
-                <h6>Ricevi notifiche di nuovi messaggi</h5>
-                <a href="#">Attiva notifiche desktop </a>
-              </div>
-            </div>
-
-
-            <!-- ## BARRA RICERCA CONTATTI -->
-            <div class="input-area p-2">
-              <label for="left-input">
-                <i class="fa-solid fa-magnifying-glass p-2"></i>
-              </label>
-              <input
-                v-model="searchContact"
-                id="left-input"
-                class="left-input"
-                type="text"
-                placeholder="Cerca o inizia una nuova chat..."
-              />
-            </div>
-            <!-- ## LISTA CONTATTI -->
-            <div class="contacts">
-              <ul class="p-0">
-                <li v-for="(contact, index) in contacts" v-show="isVisible(contact)" @click="goToContact(index)" class="contact">
-                  
-                  <div class="contact-img p-2">
-                    <img :src="contact.avatar" :alt="contact.name" />
-                  </div>
-                  <div class="contact-info">
-                    <h6 class="contact-name">{{ contact.name }}</h6>
-                    <p class="msg-shown py-1">{{ getLastMessage(contact.messages) }}</p>
-                  </div>
-                  <div class="contact-time p-2">{{ getLastAccess(contact.messages) }}</div>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          
-          <div class="col-8 right-col p-0">
-            <div class="col-header d-flex justify-content-between p-2">
-              <div class="header-contact p-2 d-flex">
-                <img :src="activeContact.avatar" :alt="activeContact.name" />
-
-                <div class="contact-info ms-2">
-                  <h6 class="contact-name">{{ activeContact.name }}</h6>
-                  <p class="msg-shown">{{ getLastAccess(activeContact.messages) }}</p>
+      
+        <div class="container">
+          <div class="row d-flex">
+            <div class="col-4 left-col p-0 d-flex">
+              <div class="col-header p-2 border-end border-dark-subtle">
+                <div class="header-contact p-2 d-flex align-items-center">
+                  <img src="./img/avatar_io.jpg" alt="mineAvatar" />
+                  <h6 class="ms-3">Sofia</h6>
                 </div>
-
-              </div>
-              <div class="header-icons p-2">
-                <i class="fa-solid fa-magnifying-glass me-3"></i>
-                <i class="fa-solid fa-paperclip me-3"></i>
-                <i class="fa-solid fa-ellipsis-vertical"></i>
-              </div>
-            </div>
-
-            <!-- ## CONTENITORE CHAT -->
-            <div class="chat-container p-5">
-              <div v-for="(object, index) in activeContact.messages" :class="object.status === 'sent' ? 'sent' : 'received'" class="messages my-3 d-flex justify-content-between">
-                <div class="sent-msg">
-                  {{object.message}}
+                <div class="header-icons p-2">
+                  <i class="fa-solid fa-circle-notch me-3"></i>
+                  <i class="fa-solid fa-message me-3"></i>
+                  <i class="fa-solid fa-ellipsis-vertical"></i>
                 </div>
-                <div  class="rigth-messages">
-                  <div  class="btn-group">
-                    <button type="button" class="btn" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class="fa-solid fa-angle-down"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                      <li><a class="dropdown-item" href="#">Message info</a></li>
-                      <li><a @click="removeMessage(index)" class="dropdown-item" href="#">Delete message</a></li>
-                    </ul>
-                  </div>
-                  <div class="msg-time">{{getFormattedDate(object.date)}}</div>
+              </div>
+              <div class="notification-toggle p-2">
+                <div class="bell">
+                  <i class="fa-solid fa-bell-slash"></i>
                 </div>
-
+                <div class="info p-2">
+                  <h6>Ricevi notifiche di nuovi messaggi</h5>
+                  <a href="#">Attiva notifiche desktop </a>
+                </div>
+              </div>
+  
+  
+              <!-- ## BARRA RICERCA CONTATTI -->
+              <div class="input-area p-2">
+                <label for="left-input">
+                  <i class="fa-solid fa-magnifying-glass p-2"></i>
+                </label>
+                <input
+                  v-model="searchContact"
+                  id="left-input"
+                  class="left-input"
+                  type="text"
+                  placeholder="Cerca o inizia una nuova chat..."
+                />
+              </div>
+              <!-- ## LISTA CONTATTI -->
+              <div class="contacts">
+                <ul class="p-0">
+                  <li v-for="(contact, index) in contacts" v-show="isVisible(contact)" @click="goToContact(index)" class="contact">
+                    
+                    <div class="contact-img p-2">
+                      <img :src="contact.avatar" :alt="contact.name" />
+                    </div>
+                    <div class="contact-info">
+                      <h6 class="contact-name">{{ contact.name }}</h6>
+                      <p class="msg-shown py-1">{{ getLastMessage(contact.messages) }}</p>
+                    </div>
+                    <div class="contact-time p-2">{{ getLastAccess(contact.messages) }}</div>
+                  </li>
+                </ul>
               </div>
             </div>
-
-            <!-- ## CHAT INPUT TEXT -->
-            <div class="chat-input d-flex align-items-center px-2">
-              <div class="mx-4">
-                <i class="fa-regular fa-face-smile"></i>
-              </div>
-
-              <input v-model="newMsg.message" @keyUp.enter="sendNewMessage()" type="text" class="message-box flex-grow-1 border rounded" placeholder="Scrivi un messaggio...">
-
-              <div class="mx-4">
-                <i class="fa-solid fa-microphone"></i>
-              </div>
-
-            </div>
-
-
+  
             
-          </div>
-        </div>
-        <!-- ## WELCOME POPUP -->
-        <div :class="classNone" class="welcome">
-          <div class="popup">
-            <h3 class="p-2 mb-4 text-center">Con chi vuoi chattare?</h3>
-            <div class="utenti">
-              <ul class="p-0">
-                <li v-for="(contact, index) in contacts"  @click="goToContact(index), removePopup()" class="contact d">
-                  <div class="user d-flex mb-1">
-                     <img :src="contact.avatar" :alt="contact.name" />
-                    <h6 class="contact-name ps-3">{{ contact.name }}</h6>
+            <div class="col-8 right-col p-0">
+              <div class="col-header d-flex justify-content-between p-2">
+                <div class="header-contact p-2 d-flex">
+                  <img :src="activeContact.avatar" :alt="activeContact.name" />
+  
+                  <div class="contact-info ms-2">
+                    <h6 class="contact-name">{{ activeContact.name }}</h6>
+                    <p class="msg-shown">{{ getLastAccess(activeContact.messages) }}</p>
                   </div>
-                </li>
-              </ul>
+  
+                </div>
+                <div class="header-icons p-2">
+                  <i class="fa-solid fa-magnifying-glass me-3"></i>
+                  <i class="fa-solid fa-paperclip me-3"></i>
+                  <i class="fa-solid fa-ellipsis-vertical"></i>
+                </div>
+              </div>
+  
+              <!-- ## CONTENITORE CHAT -->
+              <div class="chat-container p-5">
+                <div v-for="(object, index) in activeContact.messages" :class="object.status === 'sent' ? 'sent' : 'received'" class="messages my-3 d-flex justify-content-between">
+                  <div class="sent-msg">
+                    {{object.message}}
+                  </div>
+                  <div  class="rigth-messages">
+                    <div  class="btn-group">
+                      <button type="button" class="btn" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-angle-down"></i>
+                      </button>
+                      <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#">Message info</a></li>
+                        <li><a @click="removeMessage(index)" class="dropdown-item" href="#">Delete message</a></li>
+                      </ul>
+                    </div>
+                    <div class="msg-time">{{getFormattedDate(object.date)}}</div>
+                  </div>
+  
+                </div>
+              </div>
+  
+              <!-- ## CHAT INPUT TEXT -->
+              <div class="chat-input d-flex align-items-center px-2">
+                <div class="mx-4">
+                  <i class="fa-regular fa-face-smile"></i>
+                </div>
+  
+                <input v-model="newMsg.message" @keyUp.enter="sendNewMessage()" type="text" class="message-box flex-grow-1 border rounded" placeholder="Scrivi un messaggio...">
+  
+                <div class="mx-4">
+                  <i class="fa-solid fa-microphone"></i>
+                </div>
+  
+              </div>
+  
+  
+              
+            </div>
+          </div>
+          <!-- ## SPLASH PAGE -->
+          <div :class="classBlock" class="splash">
+            <h2 class="text-center mx-4 fs-1 text-warning">BENVENUTO IN BOOLZAPP</h2>
+            <div class="splash-img">
 
+              <img class="img" src="./img/avatar_io.jpg" alt="Ciao">
+            </div>
+          </div>
 
+          <!-- ## WELCOME POPUP -->
+          <div :class="classNone" class="welcome">
+            <div class="popup">
+              <h3 class="p-2 mb-4 text-center">Con chi vuoi chattare?</h3>
+              <div class="utenti">
+                <ul class="p-0">
+                  <li v-for="(contact, index) in contacts"  @click="goToContact(index), removePopup()" class="contact d">
+                    <div class="user d-flex mb-1">
+                       <img :src="contact.avatar" :alt="contact.name" />
+                      <h6 class="contact-name ps-3">{{ contact.name }}</h6>
+                    </div>
+                  </li>
+                </ul>
+  
+  
+              </div>
             </div>
           </div>
         </div>
-      </div>
     </div>
     <!-- ## Link Bootstrap JS -->
     <script

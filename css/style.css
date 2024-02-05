@@ -213,14 +213,12 @@ h6 {
   top: 0;
   left: 0;
   background-color: rgba(50, 51, 50, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .popup {
   width: 400px;
   height: 400px;
+  margin: auto;
   border-radius: 10px;
   background-color: rgb(171, 200, 213);
 }
@@ -231,4 +229,25 @@ h6 {
 
 .user:hover {
   background-color: rgb(121, 126, 128);
+}
+
+.splash {
+  width: 100%;
+  height: 100vh;
+  background-color: #009688;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.splash-img {
+  width: 60%;
+  height: 60%;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.splash-img .img {
+  width: 70%;
 }

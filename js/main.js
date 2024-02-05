@@ -7,7 +7,8 @@ const app = createApp({
     return {
       currentContact: 0,
       searchContact: "",
-      classNone: "",
+      classNone: "d-none",
+      classBlock: "d-block",
 
       contacts: [
         {
@@ -337,8 +338,18 @@ const app = createApp({
     removePopup() {
       this.classNone = "d-none";
     },
+
+    removeSplashPage() {
+      setTimeout(() => {
+        this.classNone = "d-block";
+
+        this.classBlock = "d-none";
+      }, 1000);
+    },
   },
 
-  created() {},
+  created() {
+    this.removeSplashPage();
+  },
 });
 app.mount("#root");
