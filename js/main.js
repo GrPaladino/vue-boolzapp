@@ -196,6 +196,15 @@ const app = createApp({
         },
       ],
 
+      replyMessages: [
+        "Ciao",
+        "Arrivo",
+        "A che ora torni stasera",
+        "Sono in macchina ti chiamo dopo",
+        "Sarò li tra 20 minuti",
+        "Passo a comprar le banane",
+      ],
+
       newMsg: {
         date: "",
         message: "",
@@ -204,7 +213,7 @@ const app = createApp({
 
       newOk: {
         date: "",
-        message: "Ok",
+        message: "",
         status: "received",
       },
     };
@@ -251,6 +260,7 @@ const app = createApp({
     sendOkMsg() {
       setTimeout(() => {
         this.newOk.date = this.getRealTime();
+        this.newOk.message = this.getRandomReply();
 
         this.activeContact.messages.push({
           ...this.newOk,
@@ -275,13 +285,12 @@ const app = createApp({
         now.getSeconds() < 10 ? "0" + now.getSeconds() : now.getSeconds();
 
       const realTime = `${day}/${month}/${year} ${hour}:${minutes}:${seconds}`;
-      console.log(realTime);
       return realTime;
     },
 
     getFormattedDate(date) {
       const messageDate = dt.fromFormat(date, "dd/MM/yyyy HH:mm:ss");
-      const messageDateString = messageDate.toLocaleString(dt.TIME_24_SIMPLE);
+      const messageDateString = messageDate.toLocaleString(dt.TIME_SIMPLE);
 
       return messageDateString;
     },
@@ -294,6 +303,34 @@ const app = createApp({
 
     removeMessage(i) {
       this.activeContact.messages.splice(i, 1);
+    },
+
+    getRandomNumber(min, max) {
+      min = parseInt(min);
+      max = parseInt(max);
+
+      if (isNaN(min) || isNaN(max)) {
+        console.error("I valori inseriti devono essere numerici");
+        return;
+      }
+
+      if (min >= max) {
+        console.error(
+          "Il valore massimo deve essere maggiore del valore minimo"
+        );
+        return;
+      }
+      const randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
+      return randomNumber;
+    },
+
+    getRandomReply() {
+      const reply =
+        this.replyMessages[
+          this.getRandomNumber(0, this.replyMessages.length - 1)
+        ];
+
+      return reply;
     },
   },
 
