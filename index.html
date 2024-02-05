@@ -31,6 +31,9 @@
     <!-- ## Link My JS -->
     <script type="text/javascript" src="./js/main.js" defer></script>
 
+    <!-- ## Luxon script -->
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
+
     <!-- ## Link Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -133,7 +136,7 @@
                       <li><a @click="removeMessage(index)" class="dropdown-item" href="#">Delete message</a></li>
                     </ul>
                   </div>
-                  <div class="msg-time">{{object.date}}</div>
+                  <div class="msg-time">{{getFormattedDate(object.date)}}</div>
                 </div>
 
               </div>

@@ -1,5 +1,7 @@
 const { createApp } = Vue;
 
+const dt = luxon.DateTime;
+
 const app = createApp({
   data() {
     return {
@@ -195,13 +197,13 @@ const app = createApp({
       ],
 
       newMsg: {
-        date: this.getRealTime(),
+        date: "",
         message: "",
         status: "sent",
       },
 
       newOk: {
-        date: this.getRealTime(),
+        date: "",
         message: "Ok",
         status: "received",
       },
@@ -230,13 +232,14 @@ const app = createApp({
       );
       const lastMessage = sentMessages.at(-1);
 
-      return lastMessage ? lastMessage.date : "";
+      return lastMessage ? this.getFormattedDate(lastMessage.date) : "";
     },
 
     sendNewMessage() {
       if (this.newMsg.message.length < 1) {
         return;
       } else {
+        this.newMsg.date = this.getRealTime();
         this.activeContact.messages.push({
           ...this.newMsg,
         });
@@ -247,6 +250,8 @@ const app = createApp({
 
     sendOkMsg() {
       setTimeout(() => {
+        this.newOk.date = this.getRealTime();
+
         this.activeContact.messages.push({
           ...this.newOk,
         });
@@ -266,8 +271,19 @@ const app = createApp({
       const hour = now.getHours() < 10 ? "0" + now.getHours() : now.getHours();
       const minutes =
         now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes();
+      const seconds =
+        now.getSeconds() < 10 ? "0" + now.getSeconds() : now.getSeconds();
 
-      return `${day}/${month}/${year} ${hour}:${minutes}`;
+      const realTime = `${day}/${month}/${year} ${hour}:${minutes}:${seconds}`;
+      console.log(realTime);
+      return realTime;
+    },
+
+    getFormattedDate(date) {
+      const messageDate = dt.fromFormat(date, "dd/MM/yyyy HH:mm:ss");
+      const messageDateString = messageDate.toLocaleString(dt.TIME_24_SIMPLE);
+
+      return messageDateString;
     },
 
     isVisible(contact) {
@@ -280,5 +296,7 @@ const app = createApp({
       this.activeContact.messages.splice(i, 1);
     },
   },
+
+  created() {},
 });
 app.mount("#root");
